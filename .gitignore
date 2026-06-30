@@ -1,0 +1,29 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.eggs/
+*.egg
+
+# Build artifacts
+build/
+dist/
+wheels/
+*.whl
+*.tar.gz
+
+# Virtual environments
+.venv/
+venv/
+env/
+
+# Runtime / output files
+*.err
+*.log
+*.pkl
+framesets.ini
+run_parameters.ini
+output/
+
+# OS
+.DS_Store
