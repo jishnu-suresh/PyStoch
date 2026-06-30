@@ -13,7 +13,7 @@ author = "Anirban Ain, Jishnu Suresh, Sudhagar Suyamprakasam, Sanjit Mitra"
 try:
     from pystoch import __version__ as release
 except Exception:
-    release = "1.1.1"
+    release = "1.2.3"
 version = ".".join(release.split(".")[:2])
 
 # -- General configuration ---------------------------------------------------
