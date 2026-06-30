@@ -1,3 +1,15 @@
+<p align="center">
+  <img src="https://raw.githubusercontent.com/jishnu-suresh/PyStoch/main/docs/_static/pystoch_logo.png" alt="PyStoch" width="440">
+</p>
+
+<p align="center">
+  <a href="https://pypi.org/project/pystoch/"><img src="https://img.shields.io/pypi/v/pystoch.svg" alt="PyPI version"></a>
+  <a href="https://pypi.org/project/pystoch/"><img src="https://img.shields.io/pypi/pyversions/pystoch.svg" alt="Python versions"></a>
+  <a href="https://pystoch.readthedocs.io/en/latest/"><img src="https://readthedocs.org/projects/pystoch/badge/?version=latest" alt="Documentation Status"></a>
+  <a href="https://github.com/jishnu-suresh/PyStoch/blob/main/LICENSE"><img src="https://img.shields.io/pypi/l/pystoch.svg" alt="License"></a>
+</p>
+
+
 [![](https://img.shields.io/badge/arXiv-1803.08285%20-red.svg)](https://arxiv.org/abs/1803.08285)
 [![](https://img.shields.io/badge/arXiv-2011.05969%20-red.svg)](https://arxiv.org/abs/2011.05969)
 
