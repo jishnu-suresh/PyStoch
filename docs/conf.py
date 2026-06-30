@@ -55,3 +55,7 @@ intersphinx_mapping = {
 # -- HTML output -------------------------------------------------------------
 html_theme = "furo"
 html_title = f"PyStoch {release}"
+
+# Project logo (shown in the sidebar)
+html_static_path = ["_static"]
+html_logo = "_static/pystoch_logo.png"
