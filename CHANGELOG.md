@@ -4,7 +4,7 @@ All notable changes to PyStoch are documented in this file. The format is based
 on [Keep a Changelog](https://keepachangelog.com/), and the project aims to
 follow semantic versioning.
 
-## [Unreleased]
+## [1.2.5] - 2026-06-30
 
 ### Fixed
 - `f_min`/`f_max = 0` now correctly fall back to the full band available in the

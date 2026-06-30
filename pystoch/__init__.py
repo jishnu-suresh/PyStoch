@@ -18,7 +18,7 @@ itself stays lightweight and does not pull in healpy/gwpy/etc.
 
 # Keep this in sync with the version in pyproject.toml.
 # tests/test_version.py fails the build if the two ever drift apart.
-__version__ = "1.2.4"
+__version__ = "1.2.5"
 
 # name -> submodule it lives in (imported on first access; see __getattr__)
 _LAZY = {
