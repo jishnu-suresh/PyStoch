@@ -73,16 +73,22 @@ def load_frame_data(parameters,frame_param,dataset):
             csd_data = frames_preloaded['csd'][:]
             sigma_sq_inv_data = frames_preloaded['sigma_sq_inv'][:]
             GPSmid = frames_preloaded['gps_times_mid'][:]
-    except FileNotFoundError:
-        print(f'No data found for frameset {dataset}')
+    except FileNotFoundError as exc:
+        raise FileNotFoundError(
+            f"Compressed frame file not found for frameset '{dataset}': "
+            f"{frame_data_name}. Did you run convert_frames first?"
+        ) from exc
 
+    # Use the full band available in the frames when f_min/f_max is 0 (unspecified).
+    f_min_used = frame_param.flow if parameters.f_min == 0 else parameters.f_min
+    f_max_used = frame_param.fhigh if parameters.f_max == 0 else parameters.f_max
 
     # Creating an array for the frequencies that will be processed. Trimming the CSD and PSD according to the frequency range
     f_all = []
     csd = []
     sigma_sq_inv = []
     for ii,f in enumerate(f_data):
-        if f >= parameters.f_min and f <= parameters.f_max:
+        if f >= f_min_used and f <= f_max_used:
             f_all.append(f)
             csd.append(list(csd_data[:,ii]))
             sigma_sq_inv.append(list(sigma_sq_inv_data[:,ii]))
@@ -194,7 +200,7 @@ def make_notch_array(frequency_array, notching, notch_list):
 
         # Handle the case where only one notching range is provided
         if isinstance(fmin, np.float64):
-            fmin, fmax, desc = [fmin], [fmax], [desc]
+            fmin, fmax = [fmin], [fmax]
 
         # Calculate the boundaries of each frequency bin
         df = np.abs(frequency_array[1] - frequency_array[0])
