@@ -5,4 +5,4 @@ Input is folded stochastic interferometric data (FSID).
 Authors: Anirban Ain, Jishnu Suresh, Sudhagar Suyamprakasam and Sanjit Mitra.
 """
 
-__version__ = "1.2.3"
+__version__ = "1.2.4"

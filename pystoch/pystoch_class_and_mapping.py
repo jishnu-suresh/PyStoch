@@ -1,17 +1,26 @@
 import healpy as hp
 import numpy as np
-from numpy import exp,dot,multiply
-from scipy import interpolate
-import re, sys, os
+from numpy import exp
+import sys, os
 import configparser
 import time
-import h5py
 from tqdm import tqdm
 from astropy.units.si import sday
 
 # From PyStoch
-from pystoch.detectors import *
-from pystoch.pystoch_functions import *
+from pystoch.pystoch_functions import (
+    ENDC,
+    TCYAN,
+    TRED,
+    complex_getlm,
+    complex_map2alm,
+    fisher_zeros,
+    load_frame_data,
+    make_notch_array,
+    part_alm,
+    seed_matrices,
+    spectral_index,
+)
 
 class PystochParam:
     '''Class to pack all the PyStoch parameters.

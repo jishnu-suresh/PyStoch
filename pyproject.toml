@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "pystoch"
-version = "1.2.3"
+version = "1.2.4"
 description = "A Python package for Stochastic Gravitational Wave background map-making from folded data"
 readme = "README.md"
 requires-python = ">=3.8"
@@ -37,6 +37,9 @@ dependencies = [
     "gwpy",
 ]
 
+[project.optional-dependencies]
+test = ["pytest"]
+
 [project.urls]
 Homepage = "https://github.com/jishnu-suresh/PyStoch"
 Documentation = "https://pystoch.readthedocs.io"
@@ -53,3 +56,6 @@ packages = ["pystoch", "pystoch.cli"]
 
 [tool.setuptools.package-data]
 pystoch = ["data/*.ini"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

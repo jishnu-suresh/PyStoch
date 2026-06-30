@@ -6,18 +6,11 @@ import h5py
 import numpy as np
 import time
 import sys
-import logging
 import argparse
 import configparser
 from gwpy.timeseries import TimeSeriesDict
 
-# Define separate loggers for info and error (as global variable)
-info_logger = logging.getLogger('info_logger')
-error_logger = logging.getLogger('error_logger')
-
-# Prevent log messages from propagating to the root logger
-info_logger.propagate = False
-error_logger.propagate = False
+from pystoch._logging import info_logger, error_logger, setup_logging
 
 def read_ini_file(file_path: str) -> configparser.ConfigParser:
     if not os.path.isfile(file_path):
@@ -99,21 +92,7 @@ def main():
     parser.add_argument('--err_file', type=str, default='convertframe.err', help='Path to the error file (optional)')
     args = parser.parse_args()
 
-    # Set up the info logger
-    info_handler = logging.FileHandler(args.log_file, mode='a') if args.log_file else logging.StreamHandler(sys.stdout)
-    info_handler.setLevel(logging.INFO)
-    info_formatter = logging.Formatter('%(asctime)s - %(levelname)s - %(message)s')
-    info_handler.setFormatter(info_formatter)
-    info_logger.addHandler(info_handler)
-    info_logger.setLevel(logging.INFO)
-
-    # Set up the error logger
-    err_handler = logging.FileHandler(args.err_file, mode='a')
-    err_handler.setLevel(logging.ERROR)
-    err_formatter = logging.Formatter('%(asctime)s - %(levelname)s - %(message)s')
-    err_handler.setFormatter(err_formatter)
-    error_logger.addHandler(err_handler)
-    error_logger.setLevel(logging.ERROR)
+    setup_logging(args.log_file, args.err_file)
     
     parameters = read_ini_file(args.param_file)
     framesets = read_ini_file("./framesets.ini")

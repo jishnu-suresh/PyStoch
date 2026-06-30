@@ -6,16 +6,10 @@ import os
 import logging
 import argparse
 import configparser
-from typing import List, Tuple
+from typing import List
 from gwpy.timeseries import TimeSeriesDict
 
-# Define separate loggers for info and error (as global variable)
-info_logger = logging.getLogger('info_logger')
-error_logger = logging.getLogger('error_logger')
-
-# Prevent log messages from propagating to the root logger
-info_logger.propagate = False
-error_logger.propagate = False
+from pystoch._logging import info_logger, error_logger, setup_logging
 
 def process_directory(root: str, name: str, parameter_file) -> None:
     try:
@@ -86,21 +80,7 @@ def main() -> None:
     print(f"\nA code to check the available frames and prepare parameter list for PyStoch\n")
     args = parse_arguments()
 
-    # Set up the info logger
-    info_handler = logging.FileHandler(args.log_file, mode='a') if args.log_file else logging.StreamHandler(sys.stdout)
-    info_handler.setLevel(logging.INFO)
-    info_formatter = logging.Formatter('%(asctime)s - %(levelname)s - %(message)s')
-    info_handler.setFormatter(info_formatter)
-    info_logger.addHandler(info_handler)
-    info_logger.setLevel(logging.INFO)
-
-    # Set up the error logger
-    err_handler = logging.FileHandler(args.err_file, mode='a') 
-    err_handler.setLevel(logging.ERROR)
-    err_formatter = logging.Formatter('%(asctime)s - %(levelname)s - %(message)s')
-    err_handler.setFormatter(err_formatter)
-    error_logger.addHandler(err_handler)
-    error_logger.setLevel(logging.ERROR)
+    setup_logging(args.log_file, args.err_file)
 
 
     try:

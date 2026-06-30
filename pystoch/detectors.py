@@ -6,12 +6,9 @@
 
 import sys
 import numpy as np
-import healpy as hp
 from numpy import sin as SIN
 from numpy import cos as COS
 from numpy import array as ARRAY
-from astropy.time import Time
-from astropy.units.si import sday
 
 #------------------------------------------------------------------------------------------------------------
 

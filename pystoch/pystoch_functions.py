@@ -1,16 +1,12 @@
 import healpy as hp
 import numpy as np
 from scipy import interpolate
-from multiprocessing import Pool, current_process, cpu_count, Array, Lock
-import re
 import sys
-import configparser
 import time
 import h5py
-import glob
 
 # From PyStoch
-from pystoch.detectors import *
+from pystoch.detectors import combined_antenna_response_t_delay
 
 # text color formatting
 BOLD = '\033[1m' #Bold text
@@ -80,16 +76,6 @@ def load_frame_data(parameters,frame_param,dataset):
     except FileNotFoundError:
         print(f'No data found for frameset {dataset}')
 
-    # Using the available frequency range unless specified
-    if parameters.f_max == 0:
-        f_max_used = frame_param.fhigh
-    else:
-        f_max_used = parameters.f_max
-
-    if parameters.f_min == 0:
-        f_min_used = frame_param.flow
-    else:
-        f_min_used = parameters.f_min
 
     # Creating an array for the frequencies that will be processed. Trimming the CSD and PSD according to the frequency range
     f_all = []
@@ -188,41 +174,6 @@ def fisher_zeros(fisher):
     d = 1 - c%2
     fisher = fisher*d
     return fisher
-
-# Notching cue loaded from the file if notching is expected
-def make_notch_array_old(f_all,notching,notch_list):
-    '''Returns an array having the same size as the frequency list.
-    The elements corresponding to a notched frequency is 0, rest are 1.'''
-
-    f_min = f_all[0]
-    f_max = f_all[-1]
-    deltaf = f_all[1]-f_all[0]
-    numFreqs = np.size(f_all)
-    notching_array = np.ones(np.size(f_all))
-    if notching:
-        notch = np.loadtxt(notch_list)
-        freqsToRemove = notch[:,0]
-        nBinsToRemove = notch[:,1]
-    # Notching begins
-        for ii in range(0,len(freqsToRemove)):
-            if nBinsToRemove[ii]>0:
-                index = (freqsToRemove[ii]-f_min)/deltaf  + 1
-                if nBinsToRemove[ii]%2 ==0:
-                    index_low  = index - nBinsToRemove[ii]/2 + 1
-                    index_high = index + nBinsToRemove[ii]/2
-                else:
-                    index_low  = index - (nBinsToRemove[ii]-1)/2
-                    index_high = index + (nBinsToRemove[ii]-1)/2
-                if index_low < 1:
-                    index_low=1
-
-                if index_high > np.int(numFreqs):
-                    index_high = numFreqs
-
-                if index_high >= index_low:
-                    notching_array[np.int(index_low)-1:np.int(index_high)]=np.zeros(1)
-
-    return np.asarray(list(map(bool,notching_array)))
 
 # Notching functions to use the pygwb notchlist as the input
 #FIXME: Make this function as the deafult one, once the notchlist format is finalized!
