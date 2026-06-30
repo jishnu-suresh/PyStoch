@@ -18,6 +18,10 @@ follow semantic versioning.
   `SyntaxWarning` (a future `SyntaxError`).
 
 ### Added
+- A public top-level Python API: the main classes and functions
+  (`PystochParam`, `calculate_maps`, `gwdetectors`, ...) are now importable
+  directly from `pystoch`. They are loaded lazily, so `import pystoch` stays
+  lightweight.
 - Pinned conservative minimum dependency versions.
 - A version-drift guard test (`__version__` must match `pyproject.toml`).
 
