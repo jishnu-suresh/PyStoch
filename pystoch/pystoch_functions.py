@@ -18,12 +18,12 @@ ENDC = '\033[m' # reset to the defaults
 
 
 def ascii_art():
-    print("  ____        ____  _             _     ")
-    print(" |  _ \ _   _/ ___|| |_ ___   ___| |__  ")
-    print(" | |_) | | | \___ \| __/ _ \ / __| '_ \ ")
-    print(" |  __/| |_| |___) | || (_) | (__| | | |")
-    print(" |_|    \__, |____/ \__\___/ \___|_| |_|")
-    print("        |___/                           ")
+    print(r"  ____        ____  _             _     ")
+    print(r" |  _ \ _   _/ ___|| |_ ___   ___| |__  ")
+    print(r" | |_) | | | \___ \| __/ _ \ / __| '_ \ ")
+    print(r" |  __/| |_| |___) | || (_) | (__| | | |")
+    print(r" |_|    \__, |____/ \__\___/ \___|_| |_|")
+    print(r"        |___/                           ")
     print(f"\n{BOLD+TCYAN}Stochastic Gravitational-Wave Background Map-making Pipeline{ENDC}")
     print()
 

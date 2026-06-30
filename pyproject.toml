@@ -28,13 +28,13 @@ classifiers = [
     "Topic :: Scientific/Engineering :: Physics",
 ]
 dependencies = [
-    "numpy",
-    "scipy",
-    "healpy",
-    "astropy",
-    "h5py",
-    "tqdm",
-    "gwpy",
+    "numpy>=1.17",
+    "scipy>=1.4",
+    "healpy>=1.13",
+    "astropy>=4.0",
+    "h5py>=2.10",
+    "tqdm>=4.42",
+    "gwpy>=2.0",
 ]
 
 [project.optional-dependencies]
