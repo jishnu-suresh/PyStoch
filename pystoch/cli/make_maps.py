@@ -273,7 +273,7 @@ def main():
         info_logger.info(f'\nAll calculation done in {display_time(stop)}. Average time per frequency bin is {round(stop/np.count_nonzero(frameset.notch_array* frameset.f_all),2)} seconds. Total number of notched bins are {notched_f}.')
         dict_output = vars(parameters)
         dict_output.update(vars(frame_param))
-        dict_output.update({'user':os.getlogin(),'computer':os.uname()[1],'datetime':time.strftime("date: %d/%m/%Y, time: %Hhr %Mmin %Ssec"),'run_duration':stop,'run_duration(cpu)':stop_cpu,'f_rearrange':f_rearrange})
+        dict_output.update({'computer':os.uname()[1],'datetime':time.strftime("date: %d/%m/%Y, time: %Hhr %Mmin %Ssec"),'run_duration':stop,'run_duration(cpu)':stop_cpu,'f_rearrange':f_rearrange})
     
         if parameters.pixel:
     
