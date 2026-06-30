@@ -76,3 +76,28 @@ Depending on the selected bases, PyStoch writes:
 
 Each pickle is a dictionary that also stores the run parameters and frameset
 metadata.
+
+## Using PyStoch as a library
+
+The main building blocks are available directly from the top-level `pystoch`
+namespace, so PyStoch can be scripted as well as run from the command line.
+They are imported lazily, so `import pystoch` itself stays lightweight (it does
+not pull in healpy/gwpy until you actually use a function that needs them).
+
+```python
+import pystoch
+
+# detector geometry and antenna response
+location = pystoch.gwdetectors("H1")["Location"]
+gmst = pystoch.gmst_calculate(1369056000)
+
+# build the parameter object from a parameters.ini file
+params = pystoch.PystochParam("parameters.ini")
+
+# spherical-harmonic index table, notching, spectral index, ...
+lm = pystoch.complex_getlm(params.lmax)
+```
+
+The map-making pieces (`FramesetParam`, `FramesetIntermediates`,
+`calculate_maps`, `calculate_fisher_diag`) are exposed the same way. See the
+{doc}`api` reference for the complete list.
