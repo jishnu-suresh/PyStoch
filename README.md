@@ -19,10 +19,10 @@
 
 Input is folded stochastic interferometric data (FSID)
 
-authors: Anirban Ain, Jishnu Suresh, Sudhagar Suyamprakasam and Sanjit Mitra
+authors: Anirban Ain, Jishnu Suresh, Sanjit Mitra, and Sudhagar Suyamprakasam 
 
 email: anirban.ain@ligo.org, jishnu.suresh@ligo.org, 
-sudhagar.suyamprakasam@ligo.org, sanjit.mitra@ligo.org
+sanjit.mitra@ligo.org, sudhagar.suyamprakasam@ligo.org
 
 This code creates SGWB anisotropy maps using methods discussed in the following papers (we encourage you to cite these papers when you use PyStoch and its functionalities):
 
